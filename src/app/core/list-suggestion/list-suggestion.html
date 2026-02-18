@@ -1,0 +1,30 @@
+<h2>Liste des Suggestions</h2>
+
+<input type="text"
+       placeholder="Rechercher..."
+       [(ngModel)]="searchText">
+
+<hr>
+
+<div *ngFor="let suggestion of filteredSuggestions()">
+
+  <h3>{{ suggestion.title }}</h3>
+  <p>{{ suggestion.description }}</p>
+  <p>Catégorie : {{ suggestion.category }}</p>
+  <p>Date : {{ suggestion.date | date }}</p>
+  <p>Status : {{ suggestion.status }}</p>
+  <p>Likes : {{ suggestion.nbLikes }}</p>
+
+  <div *ngIf="suggestion.status !== 'refusee'">
+    <button (click)="likeSuggestion(suggestion)">
+      Like
+    </button>
+
+    <button (click)="addToFavorites(suggestion)">
+      Ajouter aux favoris
+    </button>
+  </div>
+
+  <hr>
+
+</div>
